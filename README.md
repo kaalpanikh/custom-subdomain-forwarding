@@ -9,6 +9,28 @@ A simple guide to forward custom subdomains to free Bento and Linktree pages usi
 | [iam.nikhilmishra.live](https://iam.nikhilmishra.live) | [bento.me/kaalpanikh](https://bento.me/kaalpanikh) |
 | [links.nikhilmishra.live](https://links.nikhilmishra.live) | [linktr.ee/kaalpanikh](https://linktr.ee/kaalpanikh) |
 
+## 🔄 How It Works
+
+```mermaid
+graph LR
+    A[User] -->|Visits| B[iam.nikhilmishra.live]
+    A -->|Visits| C[links.nikhilmishra.live]
+    
+    subgraph Cloudflare
+        B -->|DNS Record| D[CNAME to @]
+        C -->|DNS Record| E[CNAME to @]
+        D -->|Page Rule| F[301 Redirect]
+        E -->|Page Rule| G[301 Redirect]
+    end
+    
+    F -->|Forwards to| H[bento.me/kaalpanikh]
+    G -->|Forwards to| I[linktr.ee/kaalpanikh]
+
+    style Cloudflare fill:#F6821F,stroke:#F6821F,stroke-width:2px
+    style H fill:#5D45F9,stroke:#5D45F9,stroke-width:2px
+    style I fill:#39E09B,stroke:#39E09B,stroke-width:2px
+```
+
 > **Note:** This setup uses Cloudflare as a workaround since free Bento and Linktree plans don't support custom domains.
 
 ## 📝 Step-by-Step Guide
